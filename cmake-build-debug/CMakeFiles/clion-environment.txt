@@ -1,3 +1,4 @@
-ToolSet: 1.0 (local)Options: 
+ToolSet: 16.0 (local)@C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+Options: 
 
-Options:-DCMAKE_MAKE_PROGRAM=/home/linusl/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/linux/x64/ninja
+Options:-DCMAKE_MAKE_PROGRAM=C:/Users/Linus.DESKTOP-1M6GUKP/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/231.9011.31/bin/ninja/win/x64/ninja.exe

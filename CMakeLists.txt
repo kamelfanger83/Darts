@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 
 project(GLFW-CMake-starter)
 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 find_package(OpenGL REQUIRED)
 
@@ -11,6 +11,9 @@ include_directories(glad/include)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW lib only")
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -finput-charset=UTF-8")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -finput-charset=UTF-8")
 
 add_subdirectory(glfw)
 

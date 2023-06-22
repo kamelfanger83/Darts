@@ -95,16 +95,19 @@ bool compileShaders(unsigned int &shaderProgram) {
 }
 
 const float l = 0.05, w = 0.01, c_s = 0.03;
-const float angstep = 0.05, speed = 0.02;
-const int ndarts = 100;
+const float angstep = 0.02, speed = 0.01;
+const int ndarts = 2000;
 
-const int s = 640;
+const int s = 1000;
 const int sub = 50;
 const float sgr = 2.0f / sub;
 const float r = 0.1, flee_r = 0.05;
 const float other_coef = 0.1, cursor_coef = 0, flee_coef = 0.2, checkpoint_coef = 0.3;
 
 const float alpha = 0.5;
+
+const int desiredRefreshRate = 60;
+const float targetFrameTime = 1.0 / desiredRefreshRate;
 
 pair<int, int> gcoords(float x, float y) {
     return {(x + 1) / 2 * sub, (y + 1) / 2 * sub};
@@ -180,6 +183,7 @@ void drawDarts() {
     glDeleteBuffers(1, &VBO);
 }
 
+#define PI 3.1415926f
 #define CIRCLETRIANGLE 10
 
 void drawCheckpoints() { // draw squares as checkpoints (green for positive coef, red for negative)
@@ -191,8 +195,8 @@ void drawCheckpoints() { // draw squares as checkpoints (green for positive coef
     for (int i = 0; i < checkpoints.size(); ++i) {
         auto checkpoint = checkpoints[i];
         for (int triangle = 0; triangle < CIRCLETRIANGLE; triangle++){
-            float angle = triangle * 2 * M_PI / CIRCLETRIANGLE;
-            float nextangle = (triangle + 1) * 2 * M_PI / CIRCLETRIANGLE;
+            float angle = triangle * 2 * PI / CIRCLETRIANGLE;
+            float nextangle = (triangle + 1) * 2 * PI / CIRCLETRIANGLE;
             vector<pair<float, float>> corners {
                     {checkpoint.x + c_s * cos(angle), checkpoint.y + c_s * sin(angle)},
                     {checkpoint.x + c_s * cos(nextangle), checkpoint.y + c_s * sin(nextangle)},
@@ -253,7 +257,36 @@ void drawCheckpoints() { // draw squares as checkpoints (green for positive coef
     glDeleteBuffers(1, &redVBO);
 }
 
-#define PI 3.1415926f
+void drawBackground(){
+    static unsigned int VAO_background = -1, VBO_background = -1;
+    if (VAO_background == -1) {
+        float vertices[] = {
+                -1.0f, -1.0f, 0.0f, // bottom left
+                -1.0f, 1.0f, 0.0f, // top left
+                1.0f, 1.0f, 0.0f, // top right
+                1.0f, -1.0f, 0.0f // bottom right
+        };
+
+        glGenVertexArrays(1, &VAO_background);
+        glGenBuffers(1, &VBO_background);
+
+        glBindVertexArray(VAO_background);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_background);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) 0);
+        glEnableVertexAttribArray(0);
+    }
+
+    glUseProgram(shaderProgram);
+    glUniform4f(colorLocation, 0.4f, 0.3f, 0.4f, alpha);
+
+    // Draw the quad
+    glBindVertexArray(VAO_background);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glBindVertexArray(0);
+}
+
 
 int main(void) {
     GLFWwindow *window;
@@ -280,12 +313,6 @@ int main(void) {
         return -1;
     }
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1, 1, -1, 1, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0.4f, 0.3f, 0.4f, 0.5f);
@@ -301,6 +328,7 @@ int main(void) {
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
+
         double xpos, ypos;
         glfwGetCursorPos(window, &xpos, &ypos);
 
@@ -384,13 +412,7 @@ int main(void) {
 
         /* Render here */
 
-        glUniform4f(colorLocation, 0.4f, 0.3f, 0.4f, alpha);
-        glBegin(GL_QUADS);
-        glVertex2f(-1, -1);
-        glVertex2f(-1, 1);
-        glVertex2f(1, 1);
-        glVertex2f(1, -1);
-        glEnd();
+        drawBackground();
 
         drawDarts();
         if (checkpoints.size() > 0) drawCheckpoints();
