@@ -1,8 +1,0 @@
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/CMakeFiles/GLFW-CMake-starter.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/CMakeFiles/edit_cache.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/CMakeFiles/rebuild_cache.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/src/CMakeFiles/glfw.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/src/CMakeFiles/edit_cache.dir
-/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/src/CMakeFiles/rebuild_cache.dir

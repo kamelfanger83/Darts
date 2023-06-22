@@ -1,4 +1,4 @@
-# Install script for directory: /home/linusl/Desktop/techlab/GLFW-CMake-starter/glfw
+# Install script for directory: /home/linusl/Desktop/techlab/Darts/glfw
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/linusl/Desktop/techlab/GLFW-CMake-starter/cmake-build-debug/glfw/src/cmake_install.cmake")
+  include("/home/linusl/Desktop/techlab/Darts/cmake-build-debug/glfw/src/cmake_install.cmake")
 
 endif()
 

@@ -5,10 +5,9 @@ project(GLFW-CMake-starter)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories(${GLEW_INCLUDE_DIRS})
+include_directories(glad/include)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW lib only")
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
@@ -21,6 +20,7 @@ endif()
 
 set(GLFW-CMAKE-STARTER-SRC
         main.cpp
+        glad/src/glad.c
         )
 
 add_executable(GLFW-CMake-starter WIN32 ${GLFW-CMAKE-STARTER-SRC})

@@ -1,5 +1,8 @@
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+//#include <GL/gl.h>
+//#include <GL/gl3w.h>
 
 #include <iostream>
 #include <vector>
@@ -269,11 +272,7 @@ int main(void) {
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    GLenum err = glewInit();
-    if (err != GLEW_OK) {
-        fprintf(stderr, "Error initializing GLEW: %s\n", glewGetErrorString(err));
-        // Handle initialization error
-    }
+    gladLoadGL();
 
     // Compile and link shaders
     if (!compileShaders(shaderProgram)) {

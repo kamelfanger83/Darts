@@ -1,4 +1,4 @@
-# Install script for directory: /home/linusl/Desktop/techlab/GLFW-CMake-starter/glfw/src
+# Install script for directory: /home/linusl/Desktop/techlab/Darts/glfw/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
