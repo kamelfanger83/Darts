@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -rdynamic "CMakeFiles/GLFW-CMake-starter.dir/main.cpp.o" -o GLFW-CMake-starter  -lGL -lGLU glfw/src/libglfw3.a -lGLEW -Wl,-Bstatic -lrt -Wl,-Bdynamic -lm -ldl -lX11 
