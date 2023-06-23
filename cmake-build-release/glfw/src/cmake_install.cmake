@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Linus.DESKTOP-1M6GUKP/OneDrive - Kt. SG BLD/hä/Desktop/programmieren/Darts/glfw/src
+# Install script for directory: C:/Users/Linus.DESKTOP-1M6GUKP/Desktop/programmieren/Darts/glfw/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -30,5 +30,10 @@ endif()
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/objdump.exe")
 endif()
 
